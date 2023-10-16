@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,23 @@ namespace StageMover
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+
+
+        private void RecWorkArea_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point mousePosition = e.GetPosition(RecWorkArea);
+
+            if (mousePosition.X >= 0 && mousePosition.X <= RecWorkArea.ActualWidth &&
+            mousePosition.Y >= 0 && mousePosition.Y <= RecWorkArea.ActualHeight)
+            {
+                double mouseX = mousePosition.X;
+                double mouseY = mousePosition.Y;
+
+                log.Text = $"Mouse X: {mouseX}, Mouse Y: {mouseY}";
+            }
         }
     }
 }
