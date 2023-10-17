@@ -9,29 +9,29 @@ namespace StageMover.Services
 {
     internal class Logger
     {
-        public void LogMovement(Stage stage, Position position)
+        public string LogMovement(Stage stage)
         {
-            Console.WriteLine($"Stage ${stage.Id} has been moved to new position: ${position}.");
+            return $"Stage {stage.Id} has been moved to new position: {stage.Position}.";
         }
 
-        public void LogInvalidMovement(Stage stage, Position position)
+        public string LogInvalidMovement(Stage stage, Position position)
         {
-            Console.WriteLine($"Stage ${stage.Id} cannot be moved to position ${position}");
+            return $"Stage {stage.Id} cannot be moved to position {position}";
         }
 
-        public void LogChangeSpeed(Motor motor)
+        public string LogChangeSpeed(Motor motor)
         {
-            Console.WriteLine($"Speed of motor ${motor.Id} has been changed to ${motor.Speed}.");
+            return $"Speed of motor {motor.Id} with axis {motor.Axis} has been changed to {motor.Speed}.";
         }
 
-        public void LogInvalidMotor(Motor motor)
+        public string LogInvalidMotor(Motor motor)
         {
-            Console.WriteLine($"Motor with id ${motor.Id} has an invalid axis setting.");
+            return $"Motor with id {motor.Id} has an invalid axis setting.";
         }
 
-        public void LogInvalidStageOrWorkArea()
+        public string LogInvalidStageOrWorkArea()
         {
-            Console.WriteLine("Work area should be larger than the stage!");
+            return "Work area should be larger than the stage!";
         }
     }
 }

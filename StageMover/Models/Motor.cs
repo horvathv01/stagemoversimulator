@@ -11,48 +11,48 @@ namespace StageMover.Models
     {
         public long Id { get; set; }
         public Axis Axis { get; init; }
-        public int Speed { get; set; } //units per seconds
-        public Motor(long id, Axis axis, int? speed) {
+        public double Speed { get; set; } //units per cycle
+        public Motor(long id, Axis axis, double speed) {
             Id = id;
             Axis = axis;
-            speed = speed == null ? 1 : speed;
+            Speed = speed;
         }
 
-        public void MovePlus(Stage stage)
+        public void MovePlus(Stage stage, double unit = 0)
         {
             switch (Axis)
             {
                 case Axis.X:
-                    stage.Position.X += Speed;
+                    stage.Position.X += unit == 0 ? Speed : unit;
                     break;
                 case Axis.Y:
-                    stage.Position.Y += Speed;
+                    stage.Position.Y += unit == 0 ? Speed : unit;
                     break;
                 case Axis.Z:
-                    stage.Position.X += Speed;
+                    stage.Position.Z += unit == 0 ? Speed : unit;
                     break;
             }
         }
 
-        public void MoveMinus(Stage stage) 
+        public void MoveMinus(Stage stage, double unit = 0) 
         { 
             switch(Axis)
             {
                 case Axis.X:
-                    stage.Position.X -= Speed;
+                    stage.Position.X -= unit == 0 ? Speed : unit;
                     break;    
                 case Axis.Y:
-                    stage.Position.X -= Speed;
+                    stage.Position.Y -= unit == 0 ? Speed : unit;
                     break; 
                 case Axis.Z:
-                    stage.Position.X -= Speed;
+                    stage.Position.Z -= unit == 0 ? Speed : unit;
                     break;
             }
         }
 
         public override string ToString()
         {
-            return $"Motor id: ${Id}, axis: ${Axis}, speed: ${Speed}";
+            return $"Motor id: {Id}, axis: {Axis}, speed: {Speed}";
         }
     }
 }

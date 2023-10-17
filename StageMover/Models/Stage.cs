@@ -9,20 +9,20 @@ namespace StageMover.Models
     internal class Stage
     {
         public long Id {  get; init; }
-        public Position Position { get; set; } //stage position means middle of top of stage
+        public Position Position { get; set; }
 
-        public int SizeX { get; init; }
-        public int SizeY { get; init; }
-        public int SizeZ { get; init; }
-        public Stage(long id, Position position, int? sizeX, int? sizeY, int? sizeZ) 
+        public double SizeX { get; init; }
+        public double SizeY { get; init; }
+        public double SizeZ { get; init; }
+        public Stage(long id, Position position, double sizeX, double sizeY, double sizeZ) 
         {
             Id = id;
 
             Position = position;
 
-            SizeX = sizeX == null ? 25 : sizeX.Value;
-            SizeY = sizeY == null ? 20 : sizeY.Value;
-            SizeZ = sizeZ == null ? 5 : sizeZ.Value;
+            SizeX = sizeX;
+            SizeY = sizeY;
+            SizeZ = sizeZ;
         }
 
         public override string ToString()

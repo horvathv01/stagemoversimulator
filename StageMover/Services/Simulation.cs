@@ -9,71 +9,46 @@ namespace StageMover.Services
 {
     internal class Simulation
     {
-        private Logger _logger {  get; init; }
-        private Motor _motorX { get; init; }
-        private Motor _motorY { get; init; }
-        private Motor _motorZ { get; init; }
-        private WorkArea _workArea { get; init; }
-
+        private Logger _logger;
+        private IMotorService _motorService;
+        private WorkArea _workArea;
         private Stage _stage { get; init; }
 
-        private Simulation(Logger logger, Motor motorX, Motor motorY, Motor motorZ, WorkArea workArea, Stage stage) 
+        public Position? Goal { get; set; } = null;
+
+        public string Log { get; private set; }
+
+        public bool Finished { get; set; }
+
+        public Simulation(Logger logger, IMotorService motorService, WorkArea workArea, Stage stage) 
         {
-            bool validationResult = Validate(logger, motorX, motorY, motorZ, workArea, stage);
-            if (!validationResult)
+            _logger = logger;
+            _motorService = motorService;
+            _workArea = workArea;
+            _stage = stage;
+        }
+
+        public System.Windows.Point Run()
+        {
+            var point = new System.Windows.Point();
+            System.Threading.Thread.Sleep(100);
+            if(Goal != null && !_stage.Position.Equals(Goal))
             {
-                throw new ArgumentException("Simulation cannot be run with the parameters provided. Please try again.");
+                _motorService.StepTowardsGoal(Goal, _stage.Position);
             } else
             {
-                _logger = logger;
-                _motorX = motorX;
-                _motorY = motorY;
-                _motorZ = motorZ;
-                _workArea = workArea;
-                _stage = stage;
+                if(_stage.Position.Equals(Goal))
+                {
+                    Finished = true;
+                } else
+                {
+                    Log = "Please set a valid goal for the stage to go to!";
+                }
             }
-        }
-
-        /// <summary>
-        /// Runs the simulation. Should be run in a while loop.
-        /// </summary>
-        public void Run()
-        {
-                //check for user input
-                //validate user input
-                    //true: goal = user input
-                    //false: log invalid goal
-                //wait one second
-                //check goal:
-                    //null? --> idle (repeat cycle)
-                        //not null --> check current position: same as goal?
-                            //true: idle (repeat cycle)
-                            //false: step towards goal (with all motors)            
-        }
-
-        private bool Validate(Logger logger, Motor motorX, Motor motorY, Motor motorZ, WorkArea workArea, Stage stage)
-        {
-            if(motorX.Axis != Enums.Axis.X)
-            {
-                logger.LogInvalidMotor(motorX);
-                return false;
-            }
-            if(motorY.Axis != Enums.Axis.Y)
-            {
-                logger.LogInvalidMotor(motorY);
-                return false;
-            }
-            if(motorZ.Axis != Enums.Axis.Z)
-            {
-                logger.LogInvalidMotor(motorZ);
-                return false;
-            }
-            if (stage.SizeX >= workArea.SizeX || stage.SizeY >= workArea.SizeY || stage.SizeZ >= workArea.SizeZ)
-            {
-                logger.LogInvalidStageOrWorkArea();
-                return false;
-            }
-            return true;
+            
+            point.X = _stage.Position.X;
+            point.Y = _stage.Position.Y;
+            return point;
         }
 
     }
