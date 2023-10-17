@@ -1,4 +1,5 @@
-﻿using StageMover.Models;
+﻿using StageMover.Factories;
+using StageMover.Models;
 using StageMover.Services;
 using System;
 using System.Threading.Tasks;
@@ -10,6 +11,10 @@ namespace StageMover
 {
     public partial class MainWindow : Window
     {
+
+        private IModelFactory _modelFactory;
+
+        private IServiceFactory _serviceFactory;
         private Motor _motorX { get; set; }
         private Motor _motorY { get; set; }
         private Motor _motorZ { get; set; }
@@ -21,22 +26,23 @@ namespace StageMover
 
         public MainWindow()
         {
-            DataContext = this;
             InitializeComponent();
 
-            //should use factory pattern or dependency injection
-            _motorX = new Motor(0, Enums.Axis.X, 1);
-            _motorY = new Motor(1, Enums.Axis.Y, 1);
-            _motorZ = new Motor(2, Enums.Axis.Z, 1);
+            _modelFactory = new ModelFactory();
+            _motorX = _modelFactory.CreateMotor(0, Enums.Axis.X, 1);
+            _motorY = _modelFactory.CreateMotor(1, Enums.Axis.Y, 1);
+            _motorZ = _modelFactory.CreateMotor(2, Enums.Axis.Z, 1);
 
             var stageCenter = new Position(
                 Math.Floor(RecWorkArea.Width / 2),
                 Math.Floor(RecWorkArea.Height / 2),
                 1);
-            _stage = new Stage(3, stageCenter, Stage.Width, Stage.Height, 1);
-            _motorService = new MotorService(_motorX, _motorY, _motorZ, _stage);
-            _workArea = new WorkArea(RecWorkArea.Width, RecWorkArea.Height, 100);
-            _simulation = new Simulation(_motorService, _stage);
+            _stage = _modelFactory.CreateStage(3, stageCenter, Stage.Width, Stage.Height, 1);
+            _workArea = _modelFactory.CreateWorkArea(RecWorkArea.Width, RecWorkArea.Height, 100);
+
+            _serviceFactory = new ServiceFactory();
+            _motorService = _serviceFactory.CreateMotorService(_motorX, _motorY, _motorZ, _stage);
+            _simulation = _serviceFactory.CreateSimulation(_motorService, _stage);
 
             MotorXSpeed.Text = _motorX.Speed.ToString();
             MotorYSpeed.Text = _motorY.Speed.ToString();
