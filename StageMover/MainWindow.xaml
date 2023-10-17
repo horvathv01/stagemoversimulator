@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Rectangle Name="RecWorkArea" HorizontalAlignment="Left" Height="175" Margin="80,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="260" PreviewMouseLeftButtonDown="RecWorkArea_PreviewMouseLeftButtonDown"/>
+        <Rectangle Name="RecWorkArea" 
+                   HorizontalAlignment="Left" Height="175" 
+                   Margin="80,64,0,0" Stroke="Black" 
+                   VerticalAlignment="Top" Width="260" 
+                   Fill = "Transparent"
+                   MouseLeftButtonDown="RecWorkArea_MouseLeftButtonDown"/>
         <TextBlock Name="log" Text="logs here" Margin="45,334,65,56" FontSize="17"/>
         
     </Grid>

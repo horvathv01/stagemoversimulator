@@ -29,9 +29,10 @@ namespace StageMover
 
 
 
-        private void RecWorkArea_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void RecWorkArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Point mousePosition = e.GetPosition(RecWorkArea);
+            
 
             if (mousePosition.X >= 0 && mousePosition.X <= RecWorkArea.ActualWidth &&
             mousePosition.Y >= 0 && mousePosition.Y <= RecWorkArea.ActualHeight)
