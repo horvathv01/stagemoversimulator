@@ -1,4 +1,5 @@
 ﻿using StageMover.Models;
+using System;
 
 namespace StageMover.Services
 {
@@ -19,30 +20,41 @@ namespace StageMover.Services
 
         public void StepTowardsGoal(Position goal, Position currentPosition)
         {
-            //X
-            if(goal.X > currentPosition.X)
+            StepX(goal, currentPosition);
+            StepY(goal, currentPosition);
+            StepZ(goal, currentPosition);
+        }
+
+        private void StepX(Position goal, Position currentPosition) 
+        {
+            if (goal.X > currentPosition.X)
             {
                 var distanceX = goal.X - currentPosition.X;
                 if (distanceX >= _motorX.Speed)
                 {
                     _motorX.MovePlus(_stage);
-                } else
+                }
+                else
                 {
                     _motorX.MovePlus(_stage, 1);
                 }
-            } 
+            }
             else if (goal.X < currentPosition.X)
             {
                 var distanceX = currentPosition.X - goal.X;
-                if(distanceX >= _motorX.Speed) { 
+                if (distanceX >= _motorX.Speed)
+                {
                     _motorX.MoveMinus(_stage);
-                } else
+                }
+                else
                 {
                     _motorX.MoveMinus(_stage, 1);
                 }
             }
+        }
 
-            //Y
+        private void StepY(Position goal, Position currentPosition)
+        {
             if (goal.Y > currentPosition.Y)
             {
                 var distanceY = goal.Y - currentPosition.Y;
@@ -68,8 +80,10 @@ namespace StageMover.Services
                     _motorY.MoveMinus(_stage, 1);
                 }
             }
+        }
 
-            //Z
+        private void StepZ(Position goal, Position currentPosition)
+        {
             if (goal.Z > currentPosition.Z)
             {
                 var distanceZ = goal.Z - currentPosition.Z;
@@ -95,7 +109,6 @@ namespace StageMover.Services
                     _motorZ.MoveMinus(_stage, 1);
                 }
             }
-
         }
     }
 }
