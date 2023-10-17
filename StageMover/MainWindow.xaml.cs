@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,12 +24,12 @@ namespace StageMover
     {
         public MainWindow()
         {
+            DataContext = this;
             InitializeComponent();
             
         }
 
-
-
+        
         private void RecWorkArea_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Point mousePosition = e.GetPosition(RecWorkArea);

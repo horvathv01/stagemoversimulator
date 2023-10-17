@@ -9,11 +9,50 @@
     <Grid>
         <Rectangle Name="RecWorkArea" 
                    HorizontalAlignment="Left" Height="175" 
-                   Margin="80,64,0,0" Stroke="Black" 
+                   Margin="80,84,0,0" Stroke="Black" 
                    VerticalAlignment="Top" Width="260" 
                    Fill = "Transparent"
                    MouseLeftButtonDown="RecWorkArea_MouseLeftButtonDown"/>
-        <TextBlock Name="log" Text="logs here" Margin="45,334,65,56" FontSize="17"/>
+
+        <Rectangle Name="Stage" 
+           HorizontalAlignment="Left" Height="40" 
+           Margin="170,152,0,0" Stroke="Red" 
+           VerticalAlignment="Top" Width="80" 
+           Fill = "LightSlateGray"
+           MouseLeftButtonDown="RecWorkArea_MouseLeftButtonDown"/>
+
+
+        <Label Content="Motor X Speed" HorizontalAlignment="Left" Margin="400,77,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button Name="btnMotorXSpeedPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="380,101,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnMotorXSpeedMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="500,101,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="MotorXSpeed" HorizontalAlignment="Left" Margin="400,103,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
+
+        <Label Content="Motor Y Speed" HorizontalAlignment="Left" Margin="400,146,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button Name="btnMotorYSpeedPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="380,172,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnMotorYSpeedMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="500,172,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="MotorYSpeed" HorizontalAlignment="Left" Margin="400,174,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
+
+        <Label Content="Motor Z Speed" HorizontalAlignment="Left" Margin="400,215,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button Name="btnMotorZSpeedPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="380,241,0,0" VerticalAlignment="Top"/>
+        <Button Name="btnMotorZSpeedMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="500,241,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="MotorZSpeed" HorizontalAlignment="Left" Margin="400,243,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
         
+        
+        <Label Content="Stage X Position" HorizontalAlignment="Left" Margin="595,77,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnStageXPosPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="575,101,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnStageXPosMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="695,101,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="StageXPos" HorizontalAlignment="Left" Margin="595,103,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
+        
+        <Label Content="Stage Y Position" HorizontalAlignment="Left" Margin="595,146,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnStageYPosPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="575,172,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnStageYPosMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="695,172,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="StageYPos" HorizontalAlignment="Left" Margin="595,174,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
+        
+        <Label Content="Stage Z Position" HorizontalAlignment="Left" Margin="595,215,0,0" VerticalAlignment="Top" Width="100" HorizontalContentAlignment="Center"/>
+        <Button x:Name="btnStageZPosPlus" Content="+" Width="20" Height="20" HorizontalAlignment="Left" Margin="575,241,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnStageZPosMinus" Content="-" Width="20" Height="20" HorizontalAlignment="Left" Margin="695,241,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="StageZPos" HorizontalAlignment="Left" Margin="595,243,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" TextAlignment="Center" Width="100"/>
+
+        <TextBlock Name="log" Text="logs" Margin="45,334,65,56" FontSize="17"/>
     </Grid>
 </Window>
